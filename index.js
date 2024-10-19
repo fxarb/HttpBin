@@ -147,6 +147,7 @@ function serveAvailableMethods() {
             <nav>
                 <ul>
                     <li><a href="https://adguard.com/">Made by AdGuard</a></li>
+                    <li><a href="https://github.com/AdguardTeam/HttpBin">Github Repo</a></li>
                 </ul>
             </nav>
         </header>
