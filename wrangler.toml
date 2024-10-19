@@ -1,0 +1,4 @@
+name = "httpbin"
+main = "index.js"
+compatibility_date = "2023-06-21"
+workers_dev = true
