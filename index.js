@@ -18,6 +18,8 @@ addEventListener('fetch', event => {
     }());
 });
 
+// Maximum number of bytes to generate for bytes and range endpoints.
+const MAX_BYTES = 10 * 1024 * 1024;
 
 async function handleRequest(request) {
     const url = new URL(request.url);
@@ -428,6 +430,10 @@ function generateRandomBytes(path, url) {
         return new Response('Invalid number of bytes', { status: 400 });
     }
 
+    if (numBytes > MAX_BYTES) {
+        return new Response('Number of bytes exceeds the limit', { status: 400 });
+    }
+
     const seedParam = url.searchParams.get('seed');
     const seed = seedParam ? parseInt(seedParam, 10) : Math.random() * 1000;
 
@@ -667,6 +673,10 @@ function serveRange(path, request) {
     }
 
     // This example assumes ASCII text data, for simplicity
+    if (n > MAX_BYTES) {
+        return new Response('Number of bytes exceeds the limit', { status: 400 });
+    }
+
     const data = "a".repeat(n);
 
     const rangeHeader = request.headers.get("Range");
