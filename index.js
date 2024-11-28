@@ -26,6 +26,8 @@ async function handleRequest(request) {
     const path = url.pathname;
 
     switch (true) {
+        case request.method === 'OPTIONS':
+            return serveOptions();
         case path === "/":
             return serveAvailableMethods();
         case path.startsWith('/absolute-redirect/'):
@@ -115,6 +117,13 @@ async function handleRequest(request) {
         default:
             return new Response('Endpoint not found', { status: 404 });
     }
+}
+
+function serveOptions() {
+    return new Response(null, { status: 204, headers: {
+        'Access-Control-Allow-Methods': 'GET, POST, HEAD, PATCH, PUT, DELETE, OPTIONS',
+        'Access-Control-Allow-Headers': '*',
+    } });
 }
 
 function serveAvailableMethods() {
