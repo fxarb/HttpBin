@@ -134,7 +134,7 @@ function serveAvailableMethods() {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>HTTPBin Cloudflare Worker</title>
-        
+
         <style type="text/css">
             /*!
             * Writ v1.0.4
@@ -152,7 +152,7 @@ function serveAvailableMethods() {
             <p>
                 Cloudflare Worker version.
             </p>
-    
+
             <nav>
                 <ul>
                     <li><a href="https://adguard.com/">Made by AdGuard</a></li>
@@ -548,7 +548,8 @@ async function returnRequestData(request) {
         url: request.url,
         ip: ip,
         country: country,
-        body: body
+        body: body,
+        cf: request.cf
     }, 0, 4), {
         headers: { 'Content-Type': 'application/json' }
     });
