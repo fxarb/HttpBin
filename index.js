@@ -541,8 +541,7 @@ async function returnRequestData(request) {
     const headers = [...request.headers].filter(([key]) => !key.startsWith('cf-'));
     const ip = request.headers.get('cf-connecting-ip');
     const country = request.headers.get('cf-ipcountry');
-
-    return new Response(JSON.stringify({
+    const resJson = JSON.stringify({
         headers: headers,
         method: request.method,
         url: request.url,
@@ -550,7 +549,9 @@ async function returnRequestData(request) {
         country: country,
         body: body,
         cf: request.cf
-    }, 0, 4), {
+    }, 0, 4);
+    console.log(resJson);
+    return new Response(resJson, {
         headers: { 'Content-Type': 'application/json' }
     });
 }
