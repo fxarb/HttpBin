@@ -523,7 +523,7 @@ function handlePatch(request) {
 }
 
 function handlePost(request) {
-    if (request.method !== 'POST') {
+    if (request.method !== 'POST' || request.method !== 'GET') {
         return new Response('Only POST method is allowed', { status: 405 });
     }
     return returnRequestData(request);
