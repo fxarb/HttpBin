@@ -497,7 +497,7 @@ function sleep(ms) {
 }
 
 function handleGet(request) {
-    if (request.method !== 'GET') {
+    if (request.method !== 'GET' && request.method !== 'POST') {
         return new Response('Only GET method is allowed', { status: 405 });
     }
     return returnRequestData(request);
@@ -523,7 +523,7 @@ function handlePatch(request) {
 }
 
 function handlePost(request) {
-    if (request.method !== 'POST' || request.method !== 'GET') {
+    if (request.method !== 'POST') {
         return new Response('Only POST method is allowed', { status: 405 });
     }
     return returnRequestData(request);
