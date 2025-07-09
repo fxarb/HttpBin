@@ -550,11 +550,8 @@ async function returnRequestData(request) {
         body: body,
         cf: request.cf
     }, 0, 4);
-    console.log(resJson);
-    const url = new URL(request.url)
-    const chl = url.searchParams.get('hub.challenge')
-    return new Response(chl, {
-        headers: { 'Content-Type': 'text/plain' }
+    return new Response(resJson, {
+        headers: { 'Content-Type': 'application/json' }
     });
 }
 
